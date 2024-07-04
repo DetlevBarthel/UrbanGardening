@@ -1,0 +1,78 @@
+Mosquitto  installieren und absichern, MQTT-Broker:
+Danach musst Du auf Youtube suchen, ist von Smart Home Bär
+
+
+Wir installieren Mosquitto Broker auf unserem Rechner: 
+https://www.youtube.com/watch?v=4ZEPPQLY5o4  , von Donsky Tech
+mosquitto.org/download -> windows -> open -> 
+im Taskmanager findest Du unter Dienste den Broker. Check, ob er aktiv ist. Wenn nicht, rechtsklicken
+und starten
+Geh in den Ordner, wo der Mosquitto-Broker liegt: ProgramFiles -> Mosquitto.
+Dort cmd öffnen und folgenden Befehl eingeben: mosquitto_sub -t test_sensor_data -h localhost
+Das ist jetzt das Broker-Fenster für die Subscription.
+Jetzt öffnen wir ein 2. Cmd-Fenster und tippen: mosquitto_pub -t test_sensor_data -h localhost -m "temp:100"
+Der lokale Broker auf Windows funktioniert also.
+Jetzt erst mal DHT11 data vom Pico auslesen und auf dem MQtt Explorer laufen lassen.
+https://fusion-automate.blogspot.com/2024/03/how-to-publish-dht11-sensor-data-from_22.html
+Auf dieser Seite findest Du den Code und alle Anleitungen
+Cmd-Konsole als Admin öffnen mit SHIFT-STR-ENTER
+Jetzt erst den eigenen Rechner mit Portforwarding im lokalen Netz sichtbar machen: 
+netsh interface portproxy add v4tov4 listenaddress=192.168.2.42 listenport=1883 connectaddress=127.0.0.1 connectport=1883
+Video von Fusion Autoamte: https://www.youtube.com/watch?v=PAn9azzPMiY
+Ich ersetze die Riesenklasse einfach durch den Import der DHT-Klasse
+Ich setze die IP-Adresse meines PCs bei MQTT-Broker ein, also: MQTT_BROKER = "192.168.2.42"
+Mit netsh interface portproxy show all bekommt man alle Proxy-Verbindungen angezeigt
+ebenso kann man das port-forwarding löschen mit: 
+netsh interface portproxy delete v4tov4 listenaddress=192.168.2.42 listenport=1883
+Jetzt habe ich einen Verbindungsfehler. 
+ Überprüfen der Netzwerkkonfiguration
+Firewall-Einstellungen: Stellen Sie sicher, dass die Firewall Ihres PCs eingehende Verbindungen auf dem Port,
+ den Ihr MQTT-Server verwendet, zulässt. Möglicherweise müssen Sie eine Regel hinzufügen, um eingehende
+ Verbindungen von Ihrem Pico W zuzulassen.
+Router-Einstellungen: Stellen Sie sicher, dass die Portweiterleitung auf Ihrem Router korrekt eingerichtet ist und 
+den richtigen internen und externen Port auf den PC weiterleitet, auf dem der MQTT-Server läuft.
+Windows Firewall konfigurieren
+Firewall-Einstellungen öffnen:
+
+Drücken Sie die Windows-Taste und geben Sie Firewall ein.
+Wählen Sie Windows Defender Firewall aus den Suchergebnissen aus.
+Erweiterte Einstellungen öffnen:
+
+Klicken Sie im linken Menü auf Erweiterte Einstellungen.
+Neue eingehende Regel erstellen:
+
+Klicken Sie im linken Menü auf Eingehende Regeln.
+Klicken Sie im rechten Bereich auf Neue Regel....
+Port auswählen:
+
+Wählen Sie Port und klicken Sie auf Weiter.
+TCP und spezifischen Port angeben:
+
+Wählen Sie TCP.
+Geben Sie den Port ein, den Ihr MQTT-Server verwendet (Standard ist 1883).
+Klicken Sie auf Weiter.
+Verbindung zulassen:
+
+Wählen Sie Verbindung zulassen.
+Klicken Sie auf Weiter.
+Profile auswählen:
+
+Wählen Sie die Profile aus, für die die Regel gelten soll (Domäne, Privat, Öffentlich). In der Regel
+ sind alle drei ausgewählt.
+Klicken Sie auf Weiter.
+Regel benennen:
+
+Geben Sie der Regel einen Namen, z.B. MQTT-Server.
+Klicken Sie auf Fertig stellen.
+Überprüfen der Firewall-Einstellungen
+Eingehende Regeln überprüfen:
+Stellen Sie sicher, dass die neu erstellte Regel in der Liste der eingehenden Regeln angezeigt wird und aktiviert
+ist (grüner Haken).
+
+
+
+mqtt explorer 192.168.2.179, robo robo mqtt
+
+
+
+

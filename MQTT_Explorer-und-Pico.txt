@@ -1,0 +1,24 @@
+Mosquitto  installieren und absichern, MQTT-Broker:
+Danach musst Du auf Youtube suchen, ist von Smart Home Bär
+
+
+Wir installieren Mosquitto Broker auf unserem Rechner: 
+https://www.youtube.com/watch?v=4ZEPPQLY5o4  , von Donsky Tech
+mosquitto.org/download -> windows -> open -> 
+
+Ich werde 3 Wege gehen: 
+1. Werte über einen Cloud-Broker veröffentlichen
+2. Werte über einen lokalen Windows-Broker veröffentlichen
+3. Werte über einen lokalen Raspberry-Server veröffentlichen
+
+
+
+
+zu 2: Wir installieren Mosquitto Broker auf unserem Rechner: 
+https://www.youtube.com/watch?v=4ZEPPQLY5o4  , von Donsky Tech
+mosquitto.org/download -> windows -> open -> 
+
+
+Jetzt erst mal DHT11 data vom Pico auslesen und auf dem MQtt Explorer laufen lassen.
+https://fusion-automate.blogspot.com/2024/03/how-to-publish-dht11-sensor-data-from_22.html
+Auf dieser Seite findest Du den Code und alle Anleitungen

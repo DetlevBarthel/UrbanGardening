@@ -1,0 +1,28 @@
+Broker Installieren:
+	$ sudo apt install -y mosquitto mosquitto-clients
+
+enable Mosquitto:
+	$ sudo systemctl enable mosquitto.service
+
+check Version of Mosquitto:
+	$ mosquitto -v
+
+allow remote access:
+	$ sudo nano /etc/mosquitto/mosquitto.conf
+
+add to the end:	
+Listener 1883
+allow_anonymous true
+
+restart Mosquitto:
+	$ sudo systemctl restart mosquitto
+
+run Mosquitto in the Background:
+	$ mosquitto -d
+
+make a test topic:
+	$ mosquitto_sub -d -t testTopic
+
+in a seperate window send a publish:
+	$ mosquitto_pub -d -t testTopic -m "hello world"
+	$ mosquitto_pub -d -t testTopic -m "wie gehts"

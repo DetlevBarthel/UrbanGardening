@@ -1,0 +1,2 @@
+Nach dem Erstellen eines Accounts bei HiveMQ bauen wir einen Client mit der Mosquitto CLI unter GETTING STARTED mit diesem 
+Befehl: mosquitto>mosquitto_sub -h bde1be3a9e954388b08a9aafcbda674a.s1.eu.hivemq.cloud -p 8884 -u detlev.barthel -P Robo-1604! -t my/test/topic
